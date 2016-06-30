@@ -30,5 +30,6 @@ public class LoginView extends ViewWithUiHandlers<LoginUiHandlers>
 
     @UiHandler("loginButton")
     void onLogin(ClickEvent event) {
+        getUiHandlers().onLogin(loginField.getText(), passwordField.getText());
     }
 }

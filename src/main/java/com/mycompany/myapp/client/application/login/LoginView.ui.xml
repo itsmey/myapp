@@ -2,12 +2,16 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
     <g:HTMLPanel>
         <header>
-            <h1>MyApp login page</h1>
+            <h2>MyApp login page</h2>
         </header>
-        <p>
-            <strong>Enter your login:</strong>
-        </p>
-        <g:TextBox ui:field="loginField"/>
-        <g:Button ui:field="loginButton">Login</g:Button>
+        <body>
+            <p>Enter your login and password:</p>
+            <g:TextBox ui:field="loginField"/> login
+            <br></br>
+            <g:PasswordTextBox ui:field="passwordField"/> password
+            <br></br>
+            <br></br>
+            <g:Button ui:field="loginButton">Sign In</g:Button>
+        </body>
     </g:HTMLPanel>
 </ui:UiBinder>

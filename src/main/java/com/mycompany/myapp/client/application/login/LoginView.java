@@ -4,6 +4,7 @@ import javax.inject.Inject;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -17,6 +18,8 @@ public class LoginView extends ViewWithUiHandlers<LoginUiHandlers>
 
     @UiField
     TextBox loginField;
+    @UiField
+    PasswordTextBox passwordField;
     @UiField
     Button loginButton;
 

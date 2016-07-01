@@ -12,6 +12,7 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.mycompany.myapp.client.application.CurrentUser;
+import com.mycompany.myapp.client.application.login.authfailure.AuthFailurePresenter;
 import com.mycompany.myapp.client.place.NameTokens;
 
 public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresenter.MyProxy>
@@ -27,6 +28,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
     private final PlaceManager placeManager;
     private final CurrentUser currentUser;
+    private final AuthFailurePresenter authFailurePresenter;
 
     @Inject
     LoginPresenter(
@@ -34,20 +36,32 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
             MyView view,
             MyProxy proxy,
             PlaceManager placeManager,
-            CurrentUser currentUser) {
+            CurrentUser currentUser,
+            AuthFailurePresenter authFailurePresenter) {
         super(eventBus, view, proxy, RevealType.Root);
         this.placeManager = placeManager;
         this.currentUser = currentUser;
+        this.authFailurePresenter = authFailurePresenter;
         getView().setUiHandlers(this);
     }
 
     public void onLogin(String login, String password) {
-        if (login.equals(CurrentUser.TEST_LOGIN) && password.equals(CurrentUser.TEST_PASS)) {
+        if (isLegitimateUser(login, password)) {
             currentUser.setLoggedIn();
             PlaceRequest placeRequest = new PlaceRequest.Builder()
                     .nameToken(NameTokens.HOME)
                     .build();
             placeManager.revealPlace(placeRequest);
+        } else {
+            showPopupMessage();
         }
+    }
+
+    private void showPopupMessage() {
+        addToPopupSlot(authFailurePresenter);
+    }
+
+    private boolean isLegitimateUser (String login, String password) {
+        return login.equals(CurrentUser.TEST_LOGIN) && password.equals(CurrentUser.TEST_PASS);
     }
 }

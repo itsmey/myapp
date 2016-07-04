@@ -74,6 +74,7 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         if (selectedDoc != null) {
             clearActionError();
             docsModel.getList().remove(selectedDoc);
+            selectionModel.clear();
             docsModel.refresh();
         } else {
             displayActionError("<p><em>You must select a document to remove!</em></p>");

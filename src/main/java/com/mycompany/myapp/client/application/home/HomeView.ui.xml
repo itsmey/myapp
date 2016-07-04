@@ -15,6 +15,7 @@
             <br></br>
             <g:Button ui:field="createDoc">Create document</g:Button>
             <br></br>
+            <g:HTML ui:field="docsActionError"/>
             <br></br>
             <h3>Documents directory</h3>
             <g:Button ui:field="deleteDoc">Delete document</g:Button>

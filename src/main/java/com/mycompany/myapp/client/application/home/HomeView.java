@@ -12,6 +12,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.ListDataProvider;
@@ -27,13 +28,15 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     }
 
     @UiField
-    Button createDoc;
-    @UiField
     TextBox freshTitle;
     @UiField
     TextBox freshAuthor;
     @UiField
     TextBox freshDescription;
+    @UiField
+    Button createDoc;
+    @UiField
+    HTML docsActionError;
     @UiField
     Button deleteDoc;
     @UiField(provided = true)
@@ -58,8 +61,9 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         String author = freshAuthor.getText();
         String description = freshDescription.getText();
         if (title.length() == 0 || author.length() == 0 || description.length() == 0) {
-            //TODO: add empty document creating attempts handling
+            displayActionError("<p><em>All document's fields must be filled!</em></p>");
         } else {
+            clearActionError();
             SimpleDoc freshDoc = new SimpleDoc(title, author, description);
             docsModel.getList().add(freshDoc);
             docsModel.refresh();
@@ -70,8 +74,11 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     public void onDelete(ClickEvent event) {
         SimpleDoc selectedDoc = selectionModel.getSelectedObject();
         if (selectedDoc != null) {
+            clearActionError();
             docsModel.getList().remove(selectedDoc);
             docsModel.refresh();
+        } else {
+            displayActionError("<p><em>You must select a document to remove!</em></p>");
         }
     }
 
@@ -161,5 +168,13 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
             }
         });
         docsTable.addColumn(descriptionColumn, "Description");
+    }
+
+    private void displayActionError(String warning) {
+        docsActionError.setHTML(warning);
+    }
+
+    private void clearActionError() {
+        docsActionError.setText("");
     }
 }

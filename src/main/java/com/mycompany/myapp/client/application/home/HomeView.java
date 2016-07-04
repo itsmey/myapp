@@ -15,9 +15,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.view.client.ListDataProvider;
-import com.google.gwt.view.client.ProvidesKey;
-import com.google.gwt.view.client.SingleSelectionModel;
+import com.google.gwt.view.client.*;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.mycompany.myapp.client.application.SimpleDoc;
 import java.util.Arrays;
@@ -86,6 +84,11 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         docsTable = new CellTable<SimpleDoc>(new ProvidesKey<SimpleDoc>() {
             public Object getKey(SimpleDoc doc) {
                 return (doc == null) ? null : doc.getId();
+            }
+        });
+        docsTable.addRowCountChangeHandler(new RowCountChangeEvent.Handler() {
+            public void onRowCountChange(RowCountChangeEvent event) {
+                docsTable.setVisibleRange(new Range(0, event.getNewRowCount()));
             }
         });
         initTableColumns(docsTable);

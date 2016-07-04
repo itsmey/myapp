@@ -22,7 +22,9 @@
             <br></br>
             <br></br>
             <table>
-                <c:CellTable ui:field="docsTable"/>
+                <g:ScrollPanel width="100%" height ="300px">
+                    <c:CellTable ui:field="docsTable"/>
+                </g:ScrollPanel>
             </table>
         </body>
     </g:HTMLPanel>

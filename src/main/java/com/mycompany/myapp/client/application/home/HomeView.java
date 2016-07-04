@@ -19,7 +19,6 @@ import com.gwtplatform.mvp.client.ViewImpl;
 import com.mycompany.myapp.client.application.SimpleDoc;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Date;
 
 public class HomeView extends ViewImpl implements HomePresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, HomeView> {
@@ -62,9 +61,9 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         initSelectionPolicy(docsTable);
         docsModel.addDataDisplay(docsTable);
         final List<SimpleDoc> DOCS = Arrays.asList(
-                new SimpleDoc("First", "John Doe", new Date(System.currentTimeMillis())),
-                new SimpleDoc("Second", "Jane Doe", new Date(System.currentTimeMillis())),
-                new SimpleDoc("Third", "Stranger", new Date(System.currentTimeMillis())));
+                new SimpleDoc("First", "John Doe", "It'a first document here"),
+                new SimpleDoc("Second", "Jane Doe", "Time for the second document!"),
+                new SimpleDoc("Third", "Stranger", "The third one"));
         for (SimpleDoc doc: DOCS) {
             docsModel.getList().add(doc);
         }
@@ -74,7 +73,7 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         initIdColumn(docsTable);
         initTitleColumn(docsTable);
         initAuthorColumn(docsTable);
-        initDateColumn(docsTable);
+        initDescriptionColumn(docsTable);
     }
 
     private void initSelectionPolicy(CellTable<SimpleDoc> docsTable) {
@@ -112,13 +111,13 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         docsTable.addColumn(authorColumn, "Author");
     }
 
-    private void initDateColumn(CellTable<SimpleDoc> docsTable) {
-        Column<SimpleDoc, String> dateColumn = new Column<SimpleDoc, String>(new EditTextCell()){
+    private void initDescriptionColumn(CellTable<SimpleDoc> docsTable) {
+        Column<SimpleDoc, String> descriptionColumn = new Column<SimpleDoc, String>(new EditTextCell()){
             @Override
             public String getValue(SimpleDoc contact) {
-                return contact.getCreationDate();
+                return contact.getDescription();
             }
         };
-        docsTable.addColumn(dateColumn, "Date of creation");
+        docsTable.addColumn(descriptionColumn, "Description");
     }
 }

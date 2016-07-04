@@ -1,23 +1,21 @@
 package com.mycompany.myapp.client.application;
 
-import java.util.Date;
-
 public class SimpleDoc {
     private static int idCounter;
     private final int id;
-    private final String title;
-    private final String author;
-    private final Date creationDate;
+    private String title;
+    private String author;
+    private String description;
 
-    public SimpleDoc (String title, String author, Date creationDate) {
+    public SimpleDoc (String title, String author, String description) {
         this.id = ++idCounter;
         this.title = title;
         this.author = author;
-        this.creationDate = creationDate;
+        this.description = description;
     }
 
     public SimpleDoc() {
-        this("unknown document", "unknown author", new Date(System.currentTimeMillis()));
+        this("unknown document", "unknown author", "default document");
     }
 
     public String getId() {
@@ -28,11 +26,23 @@ public class SimpleDoc {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthor() {
         return author;
     }
 
-    public String getCreationDate() {
-        return creationDate.toString();
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

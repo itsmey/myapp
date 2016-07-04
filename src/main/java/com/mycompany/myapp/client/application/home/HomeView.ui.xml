@@ -6,6 +6,8 @@
         <header>
             <h2>MyApp home page</h2>
         </header>
+        <g:Button ui:field="deleteDoc">Delete document</g:Button>
+        <br></br>
         <body>
             <table>
                 <c:CellTable ui:field="docsTable"/>

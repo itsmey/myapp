@@ -13,6 +13,7 @@ import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.ListDataProvider;
 import com.google.gwt.view.client.ProvidesKey;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -25,6 +26,14 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, HomeView> {
     }
 
+    @UiField
+    Button createDoc;
+    @UiField
+    TextBox freshTitle;
+    @UiField
+    TextBox freshAuthor;
+    @UiField
+    TextBox freshDescription;
     @UiField
     Button deleteDoc;
     @UiField(provided = true)
@@ -41,6 +50,20 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
         this.selectionModel = selectionModel;
         initDocsTable();
         initWidget(uiBinder.createAndBindUi(this));
+    }
+
+    @UiHandler("createDoc")
+    public void onCreate(ClickEvent event) {
+        String title = freshTitle.getText();
+        String author = freshAuthor.getText();
+        String description = freshDescription.getText();
+        if (title.length() == 0 || author.length() == 0 || description.length() == 0) {
+            //TODO: add empty document creating attempts handling
+        } else {
+            SimpleDoc freshDoc = new SimpleDoc(title, author, description);
+            docsModel.getList().add(freshDoc);
+            docsModel.refresh();
+        }
     }
 
     @UiHandler("deleteDoc")

@@ -7,10 +7,19 @@
             <h2>MyApp home page</h2>
         </header>
         <body>
-            <g:Button ui:field="deleteDoc">Delete document</g:Button>
+            <g:TextBox ui:field="freshTitle"/> Title
+            <br></br>
+            <g:TextBox ui:field="freshAuthor"/> Author
+            <br></br>
+            <g:TextBox ui:field="freshDescription"/> Description
+            <br></br>
+            <g:Button ui:field="createDoc">Create document</g:Button>
             <br></br>
             <br></br>
             <h3>Documents directory</h3>
+            <g:Button ui:field="deleteDoc">Delete document</g:Button>
+            <br></br>
+            <br></br>
             <table>
                 <c:CellTable ui:field="docsTable"/>
             </table>

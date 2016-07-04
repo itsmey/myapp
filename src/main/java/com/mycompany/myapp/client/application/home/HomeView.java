@@ -5,6 +5,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
@@ -98,6 +99,12 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
                 return contact.getTitle();
             }
         };
+        titleColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
+            public void update(int index, SimpleDoc oldDocument, String updatedTitle) {
+                oldDocument.setTitle(updatedTitle);
+                docsModel.refresh();
+            }
+        });
         docsTable.addColumn(titleColumn, "Title");
     }
 
@@ -108,6 +115,12 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
                 return contact.getAuthor();
             }
         };
+        authorColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
+            public void update(int index, SimpleDoc oldDocument, String updatedAuthor) {
+                oldDocument.setAuthor(updatedAuthor);
+                docsModel.refresh();
+            }
+        });
         docsTable.addColumn(authorColumn, "Author");
     }
 
@@ -118,6 +131,12 @@ public class HomeView extends ViewImpl implements HomePresenter.MyView {
                 return contact.getDescription();
             }
         };
+        descriptionColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
+            public void update(int index, SimpleDoc oldDocument, String updatedDescription) {
+                oldDocument.setDescription(updatedDescription);
+                docsModel.refresh();
+            }
+        });
         docsTable.addColumn(descriptionColumn, "Description");
     }
 }

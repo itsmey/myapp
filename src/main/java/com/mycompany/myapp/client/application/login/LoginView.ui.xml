@@ -12,6 +12,7 @@
             <br></br>
             <br></br>
             <g:Button ui:field="loginButton">Sign In</g:Button>
+            <g:Button ui:field="connectButton">Connect</g:Button>
         </body>
     </g:HTMLPanel>
 </ui:UiBinder>

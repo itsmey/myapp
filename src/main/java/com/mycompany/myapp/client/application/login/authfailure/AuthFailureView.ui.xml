@@ -1,25 +1,18 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
-    <ui:import field="com.mycompany.myapp.client.application.CurrentUser.TEST_LOGIN" />
-    <ui:import field="com.mycompany.myapp.client.application.CurrentUser.TEST_PASS" />
     <ui:style>
         .popup {
             border: 3px double red;
             background-color: white;
             padding: 15px 15px;
         }
-        .gwt-label {
-            line-break: strict;
-        }
     </ui:style>
     <g:PopupPanel autoHideOnHistoryEventsEnabled="true" autoHideEnabled="true" styleName="{style.popup}">
         <g:HTMLPanel>
-            <p>Login and/or password are/is incorrect</p>
-            <p>Hey, just try these credentials:</p>
-            <p>(for testing purposes only, of course):</p>
-            <div style="{style.gwt-label}">
-                <g:Label text="login: {TEST_LOGIN}"></g:Label>
-                <g:Label text="password: {TEST_PASS}"></g:Label>
-            </div>
+            <p>Login and/or password are/is incorrect or maybe server is down</p>
+            <br></br>
+            <p>You can also check your development environment for missing .jar packages</p>
+            <br></br>
+            <p>You can also examine server logs and try to determine the cause of the problem</p>
         </g:HTMLPanel>
     </g:PopupPanel>
 </ui:UiBinder>

@@ -16,12 +16,13 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.*;
-import com.gwtplatform.mvp.client.ViewImpl;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.mycompany.myapp.client.application.SimpleDoc;
 import java.util.Arrays;
 import java.util.List;
 
-public class HomeView extends ViewImpl implements HomePresenter.MyView {
+public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
+        implements HomePresenter.MyView {
     interface Binder extends UiBinder<HTMLPanel, HomeView> {
     }
 

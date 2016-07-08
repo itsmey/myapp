@@ -4,4 +4,5 @@ import com.gwtplatform.mvp.client.UiHandlers;
 
 public interface LoginUiHandlers extends UiHandlers {
     void onLogin(String login, String password);
+    void onConnect(String login, String password);
 }

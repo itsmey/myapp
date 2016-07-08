@@ -1,6 +1,8 @@
 package com.mycompany.myapp.client.application.login;
 
 import javax.inject.Inject;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtplatform.mvp.client.annotations.NoGatekeeper;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -47,18 +49,36 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
 
     public void onLogin(String login, String password) {
         if (isLegitimateUser(login, password)) {
-            currentUser.setLoggedIn();
-            PlaceRequest placeRequest = new PlaceRequest.Builder()
-                    .nameToken(NameTokens.HOME)
-                    .build();
-            placeManager.revealPlace(placeRequest);
+            showHomepage();
         } else {
             showPopupMessage();
         }
     }
 
+    public void onConnect(String login, String password) {
+        LoginServiceAsync loginServiceAsync = GWT.create(LoginService.class);
+        AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
+            public void onFailure(Throwable caught) {
+                showPopupMessage();
+            }
+
+            public void onSuccess(Void result) {
+                showHomepage();
+            }
+        };
+        loginServiceAsync.loginUser(login, password, asyncCallback);
+    }
+
     private void showPopupMessage() {
         addToPopupSlot(authFailurePresenter);
+    }
+
+    private void showHomepage() {
+        currentUser.setLoggedIn();
+        PlaceRequest placeRequest = new PlaceRequest.Builder()
+                .nameToken(NameTokens.HOME)
+                .build();
+        placeManager.revealPlace(placeRequest);
     }
 
     private boolean isLegitimateUser (String login, String password) {

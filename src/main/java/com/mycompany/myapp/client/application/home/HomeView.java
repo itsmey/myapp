@@ -27,6 +27,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     }
 
     @UiField
+    Button logoutButton;
+    @UiField
     TextBox freshTitle;
     @UiField
     TextBox freshAuthor;
@@ -52,6 +54,11 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         this.selectionModel = selectionModel;
         initDocsTable();
         initWidget(uiBinder.createAndBindUi(this));
+    }
+
+    @UiHandler("logoutButton")
+    public void onLogout(ClickEvent event) {
+        getUiHandlers().onLogout();
     }
 
     @UiHandler("createDoc")

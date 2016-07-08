@@ -9,6 +9,10 @@ public class CurrentUser {
         loggedIn = true;
     }
 
+    public void setLoggedOut() {
+        loggedIn = false;
+    }
+
     public boolean isLoggedIn() {
         return loggedIn;
     }

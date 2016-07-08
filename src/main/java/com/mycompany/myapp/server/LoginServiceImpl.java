@@ -15,11 +15,11 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
     public void loginUser(String login, String password) {
         Connection connection = Factory.Connection.getConnection(contentEngineServerURI);
         UserContext.get().pushSubject(UserContext.createSubject(connection, login, password, null));
-        try {
-            Domain domain = Factory.Domain.getInstance(connection, null);
-            ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, objectStoreID, null);
-        } finally {
-            UserContext.get().popSubject(); //TODO: decide when to close the user session
-        }
+        Domain domain = Factory.Domain.getInstance(connection, null);
+        ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, objectStoreID, null);
+    }
+
+    public void logoutUser() {
+        UserContext.get().popSubject();
     }
 }

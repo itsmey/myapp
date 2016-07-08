@@ -1,6 +1,8 @@
 package com.mycompany.myapp.client.application.home;
 
 import javax.inject.Inject;
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
@@ -11,6 +13,8 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
 import com.mycompany.myapp.client.application.CurrentUser;
+import com.mycompany.myapp.client.application.login.LoginService;
+import com.mycompany.myapp.client.application.login.LoginServiceAsync;
 import com.mycompany.myapp.client.place.NameTokens;
 
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>
@@ -40,6 +44,24 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     public void onLogout() {
+        showLoginPage();
+    }
+
+    public void onDisconnect() {
+        LoginServiceAsync loginServiceAsync = GWT.create(LoginService.class);
+        AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
+            public void onFailure(Throwable caught) {
+                //TODO: add proper error handling
+            }
+
+            public void onSuccess(Void result) {
+                showLoginPage();
+            }
+        };
+        loginServiceAsync.logoutUser(asyncCallback);
+    }
+
+    private void showLoginPage() {
         currentUser.setLoggedOut();
         PlaceRequest placeRequest = new PlaceRequest.Builder()
                 .nameToken(NameTokens.LOGIN)

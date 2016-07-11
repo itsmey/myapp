@@ -9,8 +9,8 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.mycompany.myapp.client.application.login.LoginService;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
-    final private String contentEngineServerURI = "http://172.19.215.6:9080/wsi/FNCEWS40MTOM/";
-    final private String objectStoreID = "OSMI_OLD";
+    final private String contentEngineServerURI = "http://172.19.215.15:9080/wsi/FNCEWS40MTOM/";
+    final private String objectStoreID = "TAD";
 
     public void loginUser(String login, String password) {
         Connection connection = Factory.Connection.getConnection(contentEngineServerURI);

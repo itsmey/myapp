@@ -12,8 +12,16 @@
         <servlet-name>loginServiceImpl</servlet-name>
         <servlet-class>com.mycompany.myapp.server.LoginServiceImpl</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>documentServiceImpl</servlet-name>
+        <servlet-class>com.mycompany.myapp.server.DocumentServiceImpl</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServiceImpl</servlet-name>
         <url-pattern>/myapp/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>documentServiceImpl</servlet-name>
+        <url-pattern>/myapp/document</url-pattern>
     </servlet-mapping>
 </web-app>

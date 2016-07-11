@@ -47,14 +47,6 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
         getView().setUiHandlers(this);
     }
 
-    public void onLogin(String login, String password) {
-        if (isLegitimateUser(login, password)) {
-            showHomepage();
-        } else {
-            showPopupMessage();
-        }
-    }
-
     public void onConnect(String login, String password) {
         LoginServiceAsync loginServiceAsync = GWT.create(LoginService.class);
         AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
@@ -79,9 +71,5 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
                 .nameToken(NameTokens.HOME)
                 .build();
         placeManager.revealPlace(placeRequest);
-    }
-
-    private boolean isLegitimateUser (String login, String password) {
-        return login.equals(CurrentUser.TEST_LOGIN) && password.equals(CurrentUser.TEST_PASS);
     }
 }

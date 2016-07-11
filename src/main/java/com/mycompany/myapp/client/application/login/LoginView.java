@@ -21,18 +21,11 @@ public class LoginView extends ViewWithUiHandlers<LoginUiHandlers>
     @UiField
     PasswordTextBox passwordField;
     @UiField
-    Button loginButton;
-    @UiField
     Button connectButton;
 
     @Inject
     LoginView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
-    }
-
-    @UiHandler("loginButton")
-    void onLogin(ClickEvent event) {
-        getUiHandlers().onLogin(loginField.getText(), passwordField.getText());
     }
 
     @UiHandler("connectButton")

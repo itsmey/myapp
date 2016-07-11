@@ -43,10 +43,6 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         getView().setUiHandlers(this);
     }
 
-    public void onLogout() {
-        showLoginPage();
-    }
-
     public void onDisconnect() {
         LoginServiceAsync loginServiceAsync = GWT.create(LoginService.class);
         AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {

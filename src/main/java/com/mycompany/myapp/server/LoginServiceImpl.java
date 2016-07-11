@@ -24,8 +24,4 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
             UserContext.get().popSubject();
         }
     }
-
-    public void logoutUser() {
-        UserContext.get().popSubject();
-    }
 }

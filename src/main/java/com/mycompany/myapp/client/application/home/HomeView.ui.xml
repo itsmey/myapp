@@ -5,7 +5,7 @@
     <g:HTMLPanel>
         <header>
             <h2>MyApp home page</h2>
-            <g:Button ui:field="disconnectButton">Disconnect</g:Button>
+            <g:Button ui:field="logoutButton">Disconnect</g:Button>
             <br></br>
             <br></br>
         </header>

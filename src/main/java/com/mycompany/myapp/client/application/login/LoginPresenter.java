@@ -47,7 +47,7 @@ public class LoginPresenter extends Presenter<LoginPresenter.MyView, LoginPresen
         getView().setUiHandlers(this);
     }
 
-    public void onConnect(String login, String password) {
+    public void onLogin(String login, String password) {
         LoginServiceAsync loginServiceAsync = GWT.create(LoginService.class);
         AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
             public void onFailure(Throwable caught) {

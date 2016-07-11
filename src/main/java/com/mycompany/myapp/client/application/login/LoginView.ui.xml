@@ -11,7 +11,7 @@
             <g:PasswordTextBox ui:field="passwordField"/> password
             <br></br>
             <br></br>
-            <g:Button ui:field="connectButton">Connect</g:Button>
+            <g:Button ui:field="loginButton">Connect</g:Button>
         </body>
     </g:HTMLPanel>
 </ui:UiBinder>

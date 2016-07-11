@@ -27,7 +27,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     }
 
     @UiField
-    Button disconnectButton;
+    Button logoutButton;
     @UiField
     TextBox freshTitle;
     @UiField
@@ -56,9 +56,9 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         initWidget(uiBinder.createAndBindUi(this));
     }
 
-    @UiHandler("disconnectButton")
-    public void onDisconnect(ClickEvent event) {
-        getUiHandlers().onDisconnect();
+    @UiHandler("logoutButton")
+    public void onLogout(ClickEvent event) {
+        getUiHandlers().onLogout();
     }
 
     @UiHandler("createDoc")

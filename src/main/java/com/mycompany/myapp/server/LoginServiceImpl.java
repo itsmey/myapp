@@ -14,9 +14,15 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 
     public void loginUser(String login, String password) {
         Connection connection = Factory.Connection.getConnection(contentEngineServerURI);
-        UserContext.get().pushSubject(UserContext.createSubject(connection, login, password, null));
-        Domain domain = Factory.Domain.getInstance(connection, null);
-        ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, objectStoreID, null);
+        UserContext.get().pushSubject(
+                UserContext.createSubject(connection, login, password, null) //IDEA complains on direct use of Subject
+        );
+        try {
+            Domain domain = Factory.Domain.getInstance(connection, null);
+            ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, objectStoreID, null);
+        } finally {
+            UserContext.get().popSubject();
+        }
     }
 
     public void logoutUser() {

@@ -7,6 +7,7 @@ import com.filenet.api.core.ObjectStore;
 import com.filenet.api.util.UserContext;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.mycompany.myapp.client.application.login.LoginService;
+import javax.security.auth.Subject;
 import javax.servlet.ServletException;
 
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
@@ -20,6 +21,10 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
 
     public static LoginServiceImpl getInstance() {
         return instance;
+    }
+
+    public ObjectStore getObjectStore() {
+        return objectStore;
     }
 
     @Override
@@ -44,9 +49,8 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
     }
 
     public void pushSubject() {
-        UserContext.get().pushSubject(
-                UserContext.createSubject(connection, login, password, null) //IDEA complains about direct use of Subject
-        );
+        Subject subject = UserContext.createSubject(connection, login, password, null);
+        UserContext.get().pushSubject(subject);
     }
 
     public void popSubject() {

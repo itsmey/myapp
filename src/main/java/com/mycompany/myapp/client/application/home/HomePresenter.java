@@ -56,6 +56,6 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     }
 
     private boolean isValidDoc(String title, String author, String description) {
-        return title.isEmpty() || author.isEmpty() || description.isEmpty();
+        return !title.isEmpty() && !author.isEmpty() && !description.isEmpty();
     }
 }

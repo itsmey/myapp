@@ -1,9 +1,15 @@
 package com.mycompany.myapp.client.application;
 
-public class SimpleDoc {
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class SimpleDoc implements IsSerializable {
     private String title;
     private String author;
     private String description;
+
+    public SimpleDoc() {
+        this("sample document", "unknown author", "empty description");
+    }
 
     public SimpleDoc (String title, String author, String description) {
         this.title = title;

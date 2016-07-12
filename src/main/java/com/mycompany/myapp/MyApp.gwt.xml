@@ -7,6 +7,4 @@
     <extend-configuration-property name="gin.ginjector.modules"
                                    value="com.mycompany.myapp.client.gin.ClientModule"/>
     <source path="client"/>
-    <source path="server"/>
-    <source path="shared"/>
 </module>

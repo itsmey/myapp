@@ -10,7 +10,6 @@ import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
-import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -57,14 +56,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         String title = freshTitle.getText();
         String author = freshAuthor.getText();
         String description = freshDescription.getText();
-        if (title.length() == 0 || author.length() == 0 || description.length() == 0) {
-            displayActionError("<p><em>All document's fields must be filled!</em></p>");
-        } else {
-            clearActionError();
-            SimpleDoc freshDoc = new SimpleDoc(title, author, description);
-            docsModel.getList().add(freshDoc);
-            docsModel.refresh();
-        }
+        getUiHandlers().onCreate(title, author, description);
     }
 
     @UiHandler("deleteDoc")
@@ -78,6 +70,16 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         } else {
             displayActionError("<p><em>You must select a document to remove!</em></p>");
         }
+    }
+
+    public void displayActionError(String warning) {
+        docsActionError.setHTML(warning);
+    }
+
+    public void addDocument(SimpleDoc document) {
+        clearActionError();
+        docsModel.getList().add(document);
+        docsModel.refresh();
     }
 
     private void initDocsTable() {
@@ -153,10 +155,6 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
             }
         });
         docsTable.addColumn(descriptionColumn, "Description");
-    }
-
-    private void displayActionError(String warning) {
-        docsActionError.setHTML(warning);
     }
 
     private void clearActionError() {

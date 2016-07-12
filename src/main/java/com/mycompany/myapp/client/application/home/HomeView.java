@@ -18,8 +18,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.*;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.mycompany.myapp.client.application.SimpleDoc;
-import java.util.Arrays;
-import java.util.List;
 
 public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         implements HomePresenter.MyView {
@@ -96,13 +94,6 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         initTableColumns(docsTable);
         initSelectionPolicy(docsTable);
         docsModel.addDataDisplay(docsTable);
-        final List<SimpleDoc> DOCS = Arrays.asList(
-                new SimpleDoc("First", "John Doe", "It'a first document here"),
-                new SimpleDoc("Second", "Jane Doe", "Time for the second document!"),
-                new SimpleDoc("Third", "Stranger", "The third one"));
-        for (SimpleDoc doc: DOCS) {
-            docsModel.getList().add(doc);
-        }
     }
 
     private void initTableColumns(CellTable<SimpleDoc> docsTable) {

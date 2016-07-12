@@ -14,10 +14,6 @@ public class SimpleDoc {
         this.description = description;
     }
 
-    public SimpleDoc() {
-        this("unknown document", "unknown author", "default document");
-    }
-
     public String getId() {
         return Integer.toString(id);
     }

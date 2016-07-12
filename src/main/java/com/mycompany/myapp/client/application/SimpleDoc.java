@@ -1,21 +1,14 @@
 package com.mycompany.myapp.client.application;
 
 public class SimpleDoc {
-    private static int idCounter;
-    private final int id;
     private String title;
     private String author;
     private String description;
 
     public SimpleDoc (String title, String author, String description) {
-        this.id = ++idCounter;
         this.title = title;
         this.author = author;
         this.description = description;
-    }
-
-    public String getId() {
-        return Integer.toString(id);
     }
 
     public String getTitle() {

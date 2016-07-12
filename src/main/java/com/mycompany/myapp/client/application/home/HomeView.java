@@ -83,7 +83,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     private void initDocsTable() {
         docsTable = new CellTable<SimpleDoc>(new ProvidesKey<SimpleDoc>() {
             public Object getKey(SimpleDoc doc) {
-                return (doc == null) ? null : doc.getId();
+                return (doc == null) ? null : doc.getTitle();
             }
         });
         docsTable.addRowCountChangeHandler(new RowCountChangeEvent.Handler() {
@@ -97,7 +97,6 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     }
 
     private void initTableColumns(CellTable<SimpleDoc> docsTable) {
-        initIdColumn(docsTable);
         initTitleColumn(docsTable);
         initAuthorColumn(docsTable);
         initDescriptionColumn(docsTable);
@@ -106,16 +105,6 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     private void initSelectionPolicy(CellTable<SimpleDoc> docsTable) {
         docsTable.setKeyboardSelectionPolicy(HasKeyboardSelectionPolicy.KeyboardSelectionPolicy.ENABLED);
         docsTable.setSelectionModel(selectionModel);
-    }
-
-    private void initIdColumn(CellTable<SimpleDoc> docsTable) {
-        TextColumn<SimpleDoc> idColumn = new TextColumn<SimpleDoc>() {
-            @Override
-            public String getValue(SimpleDoc contact) {
-                return contact.getId();
-            }
-        };
-        docsTable.addColumn(idColumn, "ID");
     }
 
     private void initTitleColumn(CellTable<SimpleDoc> docsTable) {

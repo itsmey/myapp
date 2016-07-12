@@ -20,6 +20,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     interface MyView extends View, HasUiHandlers<HomeUiHandlers> {
         void displayActionError(String warning);
         void addDocument(SimpleDoc document);
+        void deleteDocument(SimpleDoc document);
     }
 
     @ProxyStandard
@@ -53,6 +54,26 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
                 }
             };
             documentServiceAsync.onCreate(serverDoc, asyncCallback);
+        }
+    }
+
+    public void onDelete(final SimpleDoc document) {
+        if (document == null) {
+            getView().displayActionError("<p><em>You must select a document to remove!</em></p>");
+        } else {
+            DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
+            AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
+                @Override
+                public void onFailure(Throwable caught) {
+                    getView().displayActionError("<p><em>" + caught.getCause() + "</em></p>");
+                }
+
+                @Override
+                public void onSuccess(Void result) {
+                    getView().deleteDocument(document);
+                }
+            };
+            documentServiceAsync.onDelete(document, asyncCallback);
         }
     }
 

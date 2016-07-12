@@ -65,14 +65,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     @UiHandler("deleteDoc")
     public void onDelete(ClickEvent event) {
         SimpleDoc selectedDoc = selectionModel.getSelectedObject();
-        if (selectedDoc != null) {
-            clearActionError();
-            docsModel.getList().remove(selectedDoc);
-            selectionModel.clear();
-            docsModel.refresh();
-        } else {
-            displayActionError("<p><em>You must select a document to remove!</em></p>");
-        }
+        getUiHandlers().onDelete(selectedDoc);
     }
 
     public void displayActionError(String warning) {
@@ -82,6 +75,13 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     public void addDocument(SimpleDoc document) {
         clearActionError();
         docsModel.getList().add(document);
+        docsModel.refresh();
+    }
+
+    public void deleteDocument(SimpleDoc document) {
+        clearActionError();
+        selectionModel.clear();
+        docsModel.getList().remove(document);
         docsModel.refresh();
     }
 

@@ -1,6 +1,8 @@
 package com.mycompany.myapp.client.application.home;
 
 import javax.inject.Inject;
+
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -122,6 +124,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
                 docsModel.refresh();
             }
         });
+        docsTable.setColumnWidth(titleColumn, 20.0, Style.Unit.PCT);
         docsTable.addColumn(titleColumn, "Title");
     }
 
@@ -138,6 +141,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
                 docsModel.refresh();
             }
         });
+        docsTable.setColumnWidth(authorColumn, 30.0, Style.Unit.PCT);
         docsTable.addColumn(authorColumn, "Author");
     }
 
@@ -154,6 +158,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
                 docsModel.refresh();
             }
         });
+        docsTable.setColumnWidth(descriptionColumn, 50.0, Style.Unit.PCT);
         docsTable.addColumn(descriptionColumn, "Description");
     }
 

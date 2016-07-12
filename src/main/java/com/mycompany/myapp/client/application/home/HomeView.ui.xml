@@ -24,8 +24,8 @@
             <br></br>
             <br></br>
             <table>
-                <g:ScrollPanel width="100%" height ="300px">
-                    <c:CellTable ui:field="docsTable"/>
+                <g:ScrollPanel width="100%" height ="500px">
+                    <c:CellTable width="600px" ui:field="docsTable"/>
                 </g:ScrollPanel>
             </table>
         </body>

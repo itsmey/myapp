@@ -11,6 +11,11 @@ import com.mycompany.myapp.client.application.login.LoginService;
 public class LoginServiceImpl extends RemoteServiceServlet implements LoginService {
     final private String contentEngineServerURI = "http://172.19.215.15:9080/wsi/FNCEWS40MTOM/";
     final private String objectStoreID = "TAD";
+    private static ObjectStore objectStore;
+
+    public static ObjectStore getObjectStore() {
+        return objectStore;
+    }
 
     public void loginUser(String login, String password) {
         Connection connection = Factory.Connection.getConnection(contentEngineServerURI);
@@ -20,6 +25,7 @@ public class LoginServiceImpl extends RemoteServiceServlet implements LoginServi
         try {
             Domain domain = Factory.Domain.getInstance(connection, null);
             ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, objectStoreID, null);
+            LoginServiceImpl.objectStore = objectStore;
         } finally {
             UserContext.get().popSubject();
         }

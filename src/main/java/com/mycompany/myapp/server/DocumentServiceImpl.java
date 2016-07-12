@@ -17,7 +17,7 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
     final private String serverDocDescription = "TUzbekovPropertyDescription1";
     final private String serverDocNamePrefix = "TUzbekovDoc";
 
-    public void onCreate(SimpleDoc document) {
+    public String onCreate(SimpleDoc document) {
         ObjectStore objectStore = LoginServiceImpl.getInstance().getObjectStore();
         LoginServiceImpl.getInstance().pushSubject();
         try {
@@ -27,7 +27,8 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
             serverDocProps.putValue(serverDocTitle, document.getTitle());
             serverDocProps.putValue(serverDocAuthor, document.getAuthor());
             serverDocProps.putValue(serverDocDescription, document.getDescription());
-            serverDoc.save(RefreshMode.NO_REFRESH);
+            serverDoc.save(RefreshMode.REFRESH);
+            return serverDoc.get_Id().toString();
         } finally {
             LoginServiceImpl.getInstance().popSubject();
         }

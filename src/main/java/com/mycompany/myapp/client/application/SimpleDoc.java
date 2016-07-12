@@ -6,6 +6,7 @@ public class SimpleDoc implements IsSerializable {
     private String title;
     private String author;
     private String description;
+    private String ID;
 
     public SimpleDoc() {
         this("sample document", "unknown author", "empty description");
@@ -39,5 +40,13 @@ public class SimpleDoc implements IsSerializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

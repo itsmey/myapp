@@ -6,5 +6,5 @@ import com.mycompany.myapp.client.application.SimpleDoc;
 
 @RemoteServiceRelativePath("document")
 public interface DocumentService extends RemoteService {
-    void onCreate(SimpleDoc document);
+    String onCreate(SimpleDoc document);
 }

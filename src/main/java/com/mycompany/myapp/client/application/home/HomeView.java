@@ -12,6 +12,7 @@ import com.google.gwt.cell.client.EditTextCell;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.cellview.client.HasKeyboardSelectionPolicy;
+import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -104,6 +105,7 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         initTitleColumn(docsTable);
         initAuthorColumn(docsTable);
         initDescriptionColumn(docsTable);
+        initIDColumn(docsTable);
     }
 
     private void initSelectionPolicy(CellTable<SimpleDoc> docsTable) {
@@ -124,8 +126,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
                 docsModel.refresh();
             }
         });
-        docsTable.setColumnWidth(titleColumn, 20.0, Style.Unit.PCT);
         docsTable.addColumn(titleColumn, "Title");
+        docsTable.setColumnWidth(titleColumn, 15.0, Style.Unit.PCT);
     }
 
     private void initAuthorColumn(CellTable<SimpleDoc> docsTable) {
@@ -141,8 +143,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
                 docsModel.refresh();
             }
         });
-        docsTable.setColumnWidth(authorColumn, 30.0, Style.Unit.PCT);
         docsTable.addColumn(authorColumn, "Author");
+        docsTable.setColumnWidth(authorColumn, 15.0, Style.Unit.PCT);
     }
 
     private void initDescriptionColumn(CellTable<SimpleDoc> docsTable) {
@@ -158,8 +160,19 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
                 docsModel.refresh();
             }
         });
-        docsTable.setColumnWidth(descriptionColumn, 50.0, Style.Unit.PCT);
         docsTable.addColumn(descriptionColumn, "Description");
+        docsTable.setColumnWidth(descriptionColumn, 30.0, Style.Unit.PCT);
+    }
+
+    private void initIDColumn(CellTable<SimpleDoc> docsTable) {
+        TextColumn<SimpleDoc> idColumn = new TextColumn<SimpleDoc>() {
+            @Override
+            public String getValue(SimpleDoc document) {
+                return document.getID();
+            }
+        };
+        docsTable.addColumn(idColumn, "FNCE ID");
+        docsTable.setColumnWidth(idColumn, 40.0, Style.Unit.PCT);
     }
 
     private void clearActionError() {

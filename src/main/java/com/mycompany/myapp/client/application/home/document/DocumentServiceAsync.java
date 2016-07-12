@@ -4,5 +4,5 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.mycompany.myapp.client.application.SimpleDoc;
 
 public interface DocumentServiceAsync {
-    void onCreate(SimpleDoc document, AsyncCallback<Void> asyncCallback);
+    void onCreate(SimpleDoc document, AsyncCallback<String> asyncCallback);
 }

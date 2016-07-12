@@ -42,12 +42,13 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         } else {
             final SimpleDoc serverDoc = new SimpleDoc(title, author, description);
             DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
-            AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
+            AsyncCallback<String> asyncCallback = new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {
                     getView().displayActionError("<p><em>" + caught.getCause() + "</em></p>");
                 }
 
-                public void onSuccess(Void result) {
+                public void onSuccess(String documentID) {
+                    serverDoc.setID(documentID);
                     getView().addDocument(serverDoc);
                 }
             };

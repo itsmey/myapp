@@ -7,4 +7,5 @@ import com.mycompany.myapp.client.application.SimpleDoc;
 @RemoteServiceRelativePath("document")
 public interface DocumentService extends RemoteService {
     String onCreate(SimpleDoc document);
+    void onDelete(SimpleDoc document);
 }

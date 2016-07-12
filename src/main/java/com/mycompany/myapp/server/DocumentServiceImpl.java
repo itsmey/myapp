@@ -5,9 +5,11 @@ import com.filenet.api.core.Document;
 import com.filenet.api.core.Factory;
 import com.filenet.api.core.ObjectStore;
 import com.filenet.api.property.Properties;
+import com.filenet.api.util.Id;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.mycompany.myapp.client.application.SimpleDoc;
 import com.mycompany.myapp.client.application.home.document.DocumentService;
+
 import java.util.UUID;
 
 public class DocumentServiceImpl extends RemoteServiceServlet implements DocumentService {
@@ -29,6 +31,19 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
             serverDocProps.putValue(serverDocDescription, document.getDescription());
             serverDoc.save(RefreshMode.REFRESH);
             return serverDoc.get_Id().toString();
+        } finally {
+            LoginServiceImpl.getInstance().popSubject();
+        }
+    }
+
+    public void onDelete(SimpleDoc document) {
+        ObjectStore objectStore = LoginServiceImpl.getInstance().getObjectStore();
+        LoginServiceImpl.getInstance().pushSubject();
+        try {
+            String documentID = document.getID();
+            Document serverDoc = Factory.Document.getInstance(objectStore, serverDocClass, new Id(documentID));
+            serverDoc.delete();
+            serverDoc.save(RefreshMode.NO_REFRESH);
         } finally {
             LoginServiceImpl.getInstance().popSubject();
         }

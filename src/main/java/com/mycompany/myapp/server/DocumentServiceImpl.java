@@ -1,5 +1,7 @@
 package com.mycompany.myapp.server;
 
+import com.filenet.api.constants.AutoClassify;
+import com.filenet.api.constants.CheckinType;
 import com.filenet.api.constants.RefreshMode;
 import com.filenet.api.core.Document;
 import com.filenet.api.core.Factory;
@@ -29,6 +31,7 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
             serverDocProps.putValue(serverDocTitle, document.getTitle());
             serverDocProps.putValue(serverDocAuthor, document.getAuthor());
             serverDocProps.putValue(serverDocDescription, document.getDescription());
+            serverDoc.checkin(AutoClassify.DO_NOT_AUTO_CLASSIFY, CheckinType.MAJOR_VERSION);
             serverDoc.save(RefreshMode.REFRESH);
             return serverDoc.get_Id().toString();
         } finally {

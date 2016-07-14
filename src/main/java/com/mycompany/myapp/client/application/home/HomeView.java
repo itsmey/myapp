@@ -120,8 +120,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     private void initTitleColumn(CellTable<SimpleDoc> docsTable) {
         Column<SimpleDoc, String> titleColumn = new Column<SimpleDoc, String>(new EditTextCell()){
             @Override
-            public String getValue(SimpleDoc contact) {
-                return contact.getTitle();
+            public String getValue(SimpleDoc document) {
+                return document.getTitle();
             }
         };
         titleColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
@@ -137,8 +137,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     private void initAuthorColumn(CellTable<SimpleDoc> docsTable) {
         Column<SimpleDoc, String> authorColumn = new Column<SimpleDoc, String>(new EditTextCell()){
             @Override
-            public String getValue(SimpleDoc contact) {
-                return contact.getAuthor();
+            public String getValue(SimpleDoc document) {
+                return document.getAuthor();
             }
         };
         authorColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
@@ -154,8 +154,8 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     private void initDescriptionColumn(CellTable<SimpleDoc> docsTable) {
         Column<SimpleDoc, String> descriptionColumn = new Column<SimpleDoc, String>(new EditTextCell()){
             @Override
-            public String getValue(SimpleDoc contact) {
-                return contact.getDescription();
+            public String getValue(SimpleDoc document) {
+                return document.getDescription();
             }
         };
         descriptionColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {

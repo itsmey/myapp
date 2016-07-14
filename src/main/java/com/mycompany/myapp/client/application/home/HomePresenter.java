@@ -10,7 +10,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
-import com.mycompany.myapp.client.application.SimpleDoc;
+import com.mycompany.myapp.client.application.home.document.SimpleDoc;
 import com.mycompany.myapp.client.application.home.document.DocumentService;
 import com.mycompany.myapp.client.application.home.document.DocumentServiceAsync;
 import com.mycompany.myapp.client.place.NameTokens;

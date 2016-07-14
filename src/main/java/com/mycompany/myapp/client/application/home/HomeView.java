@@ -19,7 +19,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.*;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
-import com.mycompany.myapp.client.application.SimpleDoc;
+import com.mycompany.myapp.client.application.home.document.SimpleDoc;
 
 public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         implements HomePresenter.MyView {

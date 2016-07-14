@@ -1,4 +1,4 @@
-package com.mycompany.myapp.client.application;
+package com.mycompany.myapp.client.application.home.document;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
 

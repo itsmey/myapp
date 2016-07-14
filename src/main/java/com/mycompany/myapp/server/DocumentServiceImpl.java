@@ -9,7 +9,7 @@ import com.filenet.api.core.ObjectStore;
 import com.filenet.api.property.Properties;
 import com.filenet.api.util.Id;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.mycompany.myapp.client.application.SimpleDoc;
+import com.mycompany.myapp.client.application.home.document.SimpleDoc;
 import com.mycompany.myapp.client.application.home.document.DocumentService;
 
 import java.util.UUID;

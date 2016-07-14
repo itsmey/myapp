@@ -21,6 +21,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         void displayActionError(String warning);
         void addDocument(SimpleDoc document);
         void deleteDocument(SimpleDoc document);
+        void refreshDocuments();
     }
 
     @ProxyStandard
@@ -75,6 +76,11 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
             };
             documentServiceAsync.onDelete(document, asyncCallback);
         }
+    }
+
+    public void onUpdate(SimpleDoc oldDocument, SimpleDoc uncommittedDocument) {
+        oldDocument.makeIdentical(uncommittedDocument);
+        getView().refreshDocuments();
     }
 
     private void displayActionError(String warning) {

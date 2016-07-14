@@ -126,8 +126,9 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         };
         titleColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
             public void update(int index, SimpleDoc oldDocument, String updatedTitle) {
-                oldDocument.setTitle(updatedTitle);
-                docsModel.refresh();
+                SimpleDoc uncommittedDoc = new SimpleDoc(oldDocument);
+                uncommittedDoc.setTitle(updatedTitle);
+                getUiHandlers().onUpdate(oldDocument, uncommittedDoc);
             }
         });
         docsTable.addColumn(titleColumn, "Title");
@@ -143,8 +144,9 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         };
         authorColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
             public void update(int index, SimpleDoc oldDocument, String updatedAuthor) {
-                oldDocument.setAuthor(updatedAuthor);
-                docsModel.refresh();
+                SimpleDoc uncommittedDoc = new SimpleDoc(oldDocument);
+                uncommittedDoc.setAuthor(updatedAuthor);
+                getUiHandlers().onUpdate(oldDocument, uncommittedDoc);
             }
         });
         docsTable.addColumn(authorColumn, "Author");
@@ -160,8 +162,9 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         };
         descriptionColumn.setFieldUpdater(new FieldUpdater<SimpleDoc, String>() {
             public void update(int index, SimpleDoc oldDocument, String updatedDescription) {
-                oldDocument.setDescription(updatedDescription);
-                docsModel.refresh();
+                SimpleDoc uncommittedDoc = new SimpleDoc(oldDocument);
+                uncommittedDoc.setDescription(updatedDescription);
+                getUiHandlers().onUpdate(oldDocument, uncommittedDoc);
             }
         });
         docsTable.addColumn(descriptionColumn, "Description");

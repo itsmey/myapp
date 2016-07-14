@@ -52,18 +52,18 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         }
     }
 
-    private String generateDocumentTitle() {
-        long seed = UUID.randomUUID().getMostSignificantBits();
-        long suffix = Math.abs(seed) % 10000;
-        return serverDocNamePrefix + suffix;
-    }
-
-    public void onUpdate(SimpleDoc document) {
+    public void onUpdate(SimpleDoc uncommittedDoc) {
         ObjectStore objectStore = LoginServiceImpl.getInstance().getObjectStore();
         LoginServiceImpl.getInstance().pushSubject();
         try {
         } finally {
             LoginServiceImpl.getInstance().popSubject();
         }
+    }
+
+    private String generateDocumentTitle() {
+        long seed = UUID.randomUUID().getMostSignificantBits();
+        long suffix = Math.abs(seed) % 10000;
+        return serverDocNamePrefix + suffix;
     }
 }

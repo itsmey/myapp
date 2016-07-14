@@ -78,9 +78,21 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         }
     }
 
-    public void onUpdate(SimpleDoc oldDocument, SimpleDoc uncommittedDocument) {
-        oldDocument.makeIdentical(uncommittedDocument);
-        getView().refreshDocuments();
+    public void onUpdate(final SimpleDoc oldDocument, final SimpleDoc uncommittedDocument) {
+        DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
+        AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
+            @Override
+            public void onFailure(Throwable caught) {
+                displayActionError(caught.getCause().toString());
+            }
+
+            @Override
+            public void onSuccess(Void result) {
+                oldDocument.makeIdentical(uncommittedDocument);
+                getView().refreshDocuments();
+            }
+        };
+        documentServiceAsync.onUpdate(uncommittedDocument, asyncCallback);
     }
 
     private void displayActionError(String warning) {

@@ -38,6 +38,24 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         getView().setUiHandlers(this);
     }
 
+    @Override
+    public void onReveal() {
+        super.onReveal();
+        DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
+        AsyncCallback<SimpleDoc[]> asyncCallback = new AsyncCallback<SimpleDoc[]>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(SimpleDoc[] result) {
+
+            }
+        };
+        documentServiceAsync.onReveal(asyncCallback);
+    }
+
     public void onCreate(String title, String author, String description) {
         if (!isValidDoc (title, author, description)) {
             displayActionError("All document's fields must be filled!");

@@ -66,6 +66,10 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         }
     }
 
+    public SimpleDoc[] onReveal() {
+        return null;
+    }
+
     private String generateDocumentTitle() {
         long seed = UUID.randomUUID().getMostSignificantBits();
         long suffix = Math.abs(seed) % 10000;

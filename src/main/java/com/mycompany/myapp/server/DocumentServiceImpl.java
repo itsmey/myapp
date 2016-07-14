@@ -3,7 +3,6 @@ package com.mycompany.myapp.server;
 import com.filenet.api.constants.AutoClassify;
 import com.filenet.api.constants.CheckinType;
 import com.filenet.api.constants.RefreshMode;
-import com.filenet.api.constants.ReservationType;
 import com.filenet.api.core.Document;
 import com.filenet.api.core.Factory;
 import com.filenet.api.core.ObjectStore;

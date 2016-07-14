@@ -3,6 +3,7 @@ package com.mycompany.myapp.server;
 import com.filenet.api.constants.AutoClassify;
 import com.filenet.api.constants.CheckinType;
 import com.filenet.api.constants.RefreshMode;
+import com.filenet.api.constants.ReservationType;
 import com.filenet.api.core.Document;
 import com.filenet.api.core.Factory;
 import com.filenet.api.core.ObjectStore;
@@ -56,6 +57,11 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         ObjectStore objectStore = LoginServiceImpl.getInstance().getObjectStore();
         LoginServiceImpl.getInstance().pushSubject();
         try {
+            Id documentID = new Id(uncommittedDoc.getID());
+            Document currentDoc = Factory.Document.getInstance(objectStore, serverDocClass, documentID);
+            Properties currentDocProperties = currentDoc.getProperties();
+            updateEachProperty(currentDocProperties, uncommittedDoc);
+            currentDoc.save(RefreshMode.NO_REFRESH);
         } finally {
             LoginServiceImpl.getInstance().popSubject();
         }
@@ -65,5 +71,11 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         long seed = UUID.randomUUID().getMostSignificantBits();
         long suffix = Math.abs(seed) % 10000;
         return serverDocNamePrefix + suffix;
+    }
+
+    private void updateEachProperty(Properties properties, SimpleDoc doc) {
+        properties.putValue(serverDocTitle, doc.getTitle());
+        properties.putValue(serverDocAuthor, doc.getAuthor());
+        properties.putValue(serverDocDescription, doc.getDescription());
     }
 }

@@ -39,13 +39,13 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
     public void onCreate(String title, String author, String description) {
         if (!isValidDoc (title, author, description)) {
-            getView().displayActionError("<p><em>All document's fields must be filled!</em></p>");
+            displayActionError("All document's fields must be filled!");
         } else {
             final SimpleDoc serverDoc = new SimpleDoc(title, author, description);
             DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
             AsyncCallback<String> asyncCallback = new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {
-                    getView().displayActionError("<p><em>" + caught.getCause() + "</em></p>");
+                    displayActionError(caught.getCause().toString());
                 }
 
                 public void onSuccess(String documentID) {
@@ -59,13 +59,13 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
     public void onDelete(final SimpleDoc document) {
         if (document == null) {
-            getView().displayActionError("<p><em>You must select a document to remove!</em></p>");
+            displayActionError("You must select a document to remove!");
         } else {
             DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
             AsyncCallback<Void> asyncCallback = new AsyncCallback<Void>() {
                 @Override
                 public void onFailure(Throwable caught) {
-                    getView().displayActionError("<p><em>" + caught.getCause() + "</em></p>");
+                    displayActionError(caught.getCause().toString());
                 }
 
                 @Override
@@ -75,6 +75,10 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
             };
             documentServiceAsync.onDelete(document, asyncCallback);
         }
+    }
+
+    private void displayActionError(String warning) {
+        getView().displayActionError("<p><em>Error: " + warning + "</em></p>");
     }
 
     private boolean isValidDoc(String title, String author, String description) {

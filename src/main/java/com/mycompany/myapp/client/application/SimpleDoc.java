@@ -12,10 +12,25 @@ public class SimpleDoc implements IsSerializable {
         this("sample document", "unknown author", "empty description");
     }
 
-    public SimpleDoc (String title, String author, String description) {
+    public SimpleDoc(String title, String author, String description) {
         this.title = title;
         this.author = author;
         this.description = description;
+    }
+
+    public SimpleDoc(SimpleDoc document) {
+        title = document.title;
+        author = document.author;
+        description = document.description;
+        ID = document.ID;
+    }
+
+    //similar to copy constructor except for creating a new object
+    public void makeIdentical(SimpleDoc document) {
+        title = document.title;
+        author = document.author;
+        description = document.description;
+        ID = document.ID;
     }
 
     public String getTitle() {

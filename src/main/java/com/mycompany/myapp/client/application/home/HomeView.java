@@ -75,13 +75,17 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
     public void addDocument(SimpleDoc document) {
         clearActionError();
         docsModel.getList().add(document);
-        docsModel.refresh();
+        refreshDocuments();
     }
 
     public void deleteDocument(SimpleDoc document) {
         clearActionError();
         selectionModel.clear();
         docsModel.getList().remove(document);
+        refreshDocuments();
+    }
+
+    public void refreshDocuments() {
         docsModel.refresh();
     }
 

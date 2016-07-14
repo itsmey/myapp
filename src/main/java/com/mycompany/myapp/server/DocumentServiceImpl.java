@@ -57,4 +57,13 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         long suffix = Math.abs(seed) % 10000;
         return serverDocNamePrefix + suffix;
     }
+
+    public void onUpdate(SimpleDoc document) {
+        ObjectStore objectStore = LoginServiceImpl.getInstance().getObjectStore();
+        LoginServiceImpl.getInstance().pushSubject();
+        try {
+        } finally {
+            LoginServiceImpl.getInstance().popSubject();
+        }
+    }
 }

@@ -8,4 +8,5 @@ import com.mycompany.myapp.client.application.SimpleDoc;
 public interface DocumentService extends RemoteService {
     String onCreate(SimpleDoc document);
     void onDelete(SimpleDoc document);
+    void onUpdate(SimpleDoc document);
 }

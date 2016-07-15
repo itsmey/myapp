@@ -112,6 +112,6 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         String title = serverDocProperties.getStringValue(serverDocTitle);
         String author = serverDocProperties.getStringValue(serverDocAuthor);
         String description = serverDocProperties.getStringValue(serverDocDescription);
-        return new SimpleDoc(title, author, description);
+        return new SimpleDoc(title, author, description, null);
     }
 }

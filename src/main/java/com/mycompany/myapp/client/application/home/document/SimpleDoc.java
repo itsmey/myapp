@@ -9,13 +9,13 @@ public class SimpleDoc implements IsSerializable {
     private String ID;
 
     public SimpleDoc() {
-        this("sample document", "unknown author", "empty description");
     }
 
-    public SimpleDoc(String title, String author, String description) {
+    public SimpleDoc(String title, String author, String description, String ID) {
         this.title = title;
         this.author = author;
         this.description = description;
+        this.ID = ID;
     }
 
     public SimpleDoc(SimpleDoc document) {

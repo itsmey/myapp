@@ -62,7 +62,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         if (!isValidDoc (title, author, description)) {
             displayActionError("All document's fields must be filled!");
         } else {
-            final SimpleDoc serverDoc = new SimpleDoc(title, author, description);
+            final SimpleDoc serverDoc = new SimpleDoc(title, author, description, null);
             DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
             AsyncCallback<String> asyncCallback = new AsyncCallback<String>() {
                 public void onFailure(Throwable caught) {

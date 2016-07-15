@@ -81,8 +81,8 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
             IndependentObjectSet resultSet = scope.fetchObjects(sqlQuery, null, null, false);
             for(Iterator it = resultSet.iterator(); it.hasNext(); ) {
                 Document serverDoc = (Document)it.next();
-                Properties docProperties = serverDoc.getProperties();
-                SimpleDoc doc = reconstructDoc(docProperties);
+                serverDoc.refresh();
+                SimpleDoc doc = reconstructDoc(serverDoc);
                 initialDocs.add(doc);
             }
         } finally {
@@ -108,10 +108,12 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
                 " FROM " + serverDocClass;
     }
 
-    private SimpleDoc reconstructDoc(Properties serverDocProperties) {
+    private SimpleDoc reconstructDoc(Document serverDoc) {
+        Properties serverDocProperties = serverDoc.getProperties();
         String title = serverDocProperties.getStringValue(serverDocTitle);
         String author = serverDocProperties.getStringValue(serverDocAuthor);
         String description = serverDocProperties.getStringValue(serverDocDescription);
-        return new SimpleDoc(title, author, description, null);
+        String ID = serverDoc.get_Id().toString();
+        return new SimpleDoc(title, author, description, ID);
     }
 }

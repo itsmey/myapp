@@ -14,6 +14,7 @@ import com.mycompany.myapp.client.application.home.document.SimpleDoc;
 import com.mycompany.myapp.client.application.home.document.DocumentService;
 import com.mycompany.myapp.client.application.home.document.DocumentServiceAsync;
 import com.mycompany.myapp.client.place.NameTokens;
+import java.util.List;
 
 public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter.MyProxy>
         implements HomeUiHandlers {
@@ -22,6 +23,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
         void addDocument(SimpleDoc document);
         void deleteDocument(SimpleDoc document);
         void refreshDocuments();
+        void setDirectoryContent(List<SimpleDoc> documents);
     }
 
     @ProxyStandard
@@ -42,14 +44,14 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
     public void onReveal() {
         super.onReveal();
         DocumentServiceAsync documentServiceAsync = GWT.create(DocumentService.class);
-        AsyncCallback<SimpleDoc[]> asyncCallback = new AsyncCallback<SimpleDoc[]>() {
+        AsyncCallback<List<SimpleDoc>> asyncCallback = new AsyncCallback<List<SimpleDoc>>() {
             @Override
             public void onFailure(Throwable caught) {
 
             }
 
             @Override
-            public void onSuccess(SimpleDoc[] result) {
+            public void onSuccess(List<SimpleDoc> result) {
 
             }
         };

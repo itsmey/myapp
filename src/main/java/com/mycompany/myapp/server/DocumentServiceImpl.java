@@ -11,7 +11,7 @@ import com.filenet.api.util.Id;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.mycompany.myapp.client.application.home.document.SimpleDoc;
 import com.mycompany.myapp.client.application.home.document.DocumentService;
-
+import java.util.List;
 import java.util.UUID;
 
 public class DocumentServiceImpl extends RemoteServiceServlet implements DocumentService {
@@ -66,7 +66,7 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         }
     }
 
-    public SimpleDoc[] onReveal() {
+    public List<SimpleDoc> onReveal() {
         return null;
     }
 

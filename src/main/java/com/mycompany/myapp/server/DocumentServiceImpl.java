@@ -12,7 +12,12 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.mycompany.myapp.client.application.home.document.SimpleDoc;
 import com.mycompany.myapp.client.application.home.document.DocumentService;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.UUID;
+import com.filenet.api.query.SearchSQL;
+import com.filenet.api.query.SearchScope;
+import com.filenet.api.collection.IndependentObjectSet;
 
 public class DocumentServiceImpl extends RemoteServiceServlet implements DocumentService {
     final private String serverDocClass = "TUzbekovTestingClass1";
@@ -68,12 +73,22 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
 
     public List<SimpleDoc> onReveal() {
         ObjectStore objectStore = LoginServiceImpl.getInstance().getObjectStore();
+        SearchScope scope = new SearchScope(objectStore);
+        SearchSQL sqlQuery = new SearchSQL(constructSqlQuery());
+        List<SimpleDoc> initialDocs = new ArrayList<>();
         LoginServiceImpl.getInstance().pushSubject();
         try {
+            IndependentObjectSet resultSet = scope.fetchObjects(sqlQuery, null, null, false);
+            for(Iterator it = resultSet.iterator(); it.hasNext(); ) {
+                Document serverDoc = (Document)it.next();
+                Properties docProperties = serverDoc.getProperties();
+                SimpleDoc doc = reconstructDoc(docProperties);
+                initialDocs.add(doc);
+            }
         } finally {
             LoginServiceImpl.getInstance().popSubject();
         }
-        return null;
+        return initialDocs;
     }
 
     private String generateDocumentTitle() {
@@ -86,5 +101,17 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
         properties.putValue(serverDocTitle, doc.getTitle());
         properties.putValue(serverDocAuthor, doc.getAuthor());
         properties.putValue(serverDocDescription, doc.getDescription());
+    }
+
+    private String constructSqlQuery() {
+        return "SELECT " + serverDocAuthor + ", " + serverDocTitle + ", " + serverDocDescription +
+                " FROM " + serverDocClass;
+    }
+
+    private SimpleDoc reconstructDoc(Properties serverDocProperties) {
+        String title = serverDocProperties.getStringValue(serverDocTitle);
+        String author = serverDocProperties.getStringValue(serverDocAuthor);
+        String description = serverDocProperties.getStringValue(serverDocDescription);
+        return new SimpleDoc(title, author, description);
     }
 }

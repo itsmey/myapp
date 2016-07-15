@@ -1,4 +1,4 @@
-package com.mycompany.myapp.client.application;
+package com.mycompany.myapp.client.application.login;
 
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.annotations.DefaultGatekeeper;

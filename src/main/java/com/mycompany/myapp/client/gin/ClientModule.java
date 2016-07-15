@@ -2,7 +2,7 @@ package com.mycompany.myapp.client.gin;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
-import com.mycompany.myapp.client.application.CurrentUser;
+import com.mycompany.myapp.client.application.login.CurrentUser;
 import com.mycompany.myapp.client.application.home.HomeModule;
 import com.mycompany.myapp.client.application.login.LoginModule;
 import com.mycompany.myapp.client.place.NameTokens;

@@ -13,7 +13,6 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.shared.proxy.PlaceRequest;
-import com.mycompany.myapp.client.application.CurrentUser;
 import com.mycompany.myapp.client.application.login.authfailure.AuthFailurePresenter;
 import com.mycompany.myapp.client.place.NameTokens;
 

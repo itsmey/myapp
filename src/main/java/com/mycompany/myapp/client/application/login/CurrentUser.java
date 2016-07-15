@@ -1,4 +1,4 @@
-package com.mycompany.myapp.client.application;
+package com.mycompany.myapp.client.application.login;
 
 public class CurrentUser {
     private boolean loggedIn;

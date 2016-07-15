@@ -1,7 +1,6 @@
 package com.mycompany.myapp.client.application.home;
 
 import javax.inject.Inject;
-
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -20,6 +19,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.view.client.*;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.mycompany.myapp.client.application.home.document.SimpleDoc;
+import java.util.List;
 
 public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
         implements HomePresenter.MyView {
@@ -87,6 +87,11 @@ public class HomeView extends ViewWithUiHandlers<HomeUiHandlers>
 
     public void refreshDocuments() {
         docsModel.refresh();
+    }
+
+    public void setDirectoryContent(List<SimpleDoc> documents) {
+        docsModel.getList().addAll(documents);
+        refreshDocuments();
     }
 
     private void initDocsTable() {

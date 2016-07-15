@@ -52,7 +52,7 @@ public class HomePresenter extends Presenter<HomePresenter.MyView, HomePresenter
 
             @Override
             public void onSuccess(List<SimpleDoc> result) {
-
+                getView().setDirectoryContent(result);
             }
         };
         documentServiceAsync.onReveal(asyncCallback);

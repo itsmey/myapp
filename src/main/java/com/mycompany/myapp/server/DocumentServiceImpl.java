@@ -67,6 +67,12 @@ public class DocumentServiceImpl extends RemoteServiceServlet implements Documen
     }
 
     public List<SimpleDoc> onReveal() {
+        ObjectStore objectStore = LoginServiceImpl.getInstance().getObjectStore();
+        LoginServiceImpl.getInstance().pushSubject();
+        try {
+        } finally {
+            LoginServiceImpl.getInstance().popSubject();
+        }
         return null;
     }
 
